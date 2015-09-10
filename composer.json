@@ -1,0 +1,42 @@
+{
+  "name": "revision6/contao-doctrine-cache",
+  "description": "Contao Doctrine Cache Provider",
+  "keywords": [
+    "contao",
+    "cache",
+    "doctrine"
+  ],
+  "type": "contao-module",
+  "homepage": "https://revision6.de",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Christopher Bölter",
+      "email": "c.boelter@revision6.de",
+      "homepage": "https://revision6.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "shout@revision6.de",
+    "issues": "https://github.com/revision6/revision6/contao-doctrine-cache/issues",
+    "source": "https://github.com/revision6/revision6/contao-doctrine-cache"
+  },
+  "require": {
+    "php": ">=5.4",
+    "contao/core": ">3.4.3,<4.0",
+    "contao-community-alliance/composer-plugin": "~2.0",
+    "doctrine/cache": "~1.4"
+  },
+  "require-dev": {
+    "cyberspectrum/contao-toolbox": "~0.6",
+    "phpcq/all-tasks": "~1.0"
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "contao": "system/modules/contao-doctrine-cache"
+      }
+    }
+  }
+}
