@@ -15,39 +15,24 @@
 
 namespace ContaoDoctrineCache\Events\Subscriber;
 
-use Contao\Input;
 use ContaoDoctrineCache\Events\Event\FlushCacheEvent;
 use ContaoDoctrineCache\Events\Event\RebuildCacheEvent;
-use PostManager\IPostManagerServiceContainer;
-use Symfony\Component\EventDispatcher\Event;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * The BaseSubscriber for extended all other subscriber.
  *
  * @package PostManager\DataContainer\Events\Table
  */
-class Subscriber
+class Subscriber implements EventSubscriberInterface
 {
 
 
-    public function __construct()
+    public static function getSubscribedEvents()
     {
-        $this->registerEventsInDispatcher();
-    }
-
-    /**
-     * Register Events in Dispatcher.
-     *
-     * @return void
-     */
-    protected function registerEventsInDispatcher()
-    {
-        $this
-            ->addListener(
-                FlushCacheEvent::NAME,
-                array($this, 'flushCache')
-            );
+        return array(
+            FlushCacheEvent::NAME => 'flushCache',
+        );
     }
 
     public function flushCache(FlushCacheEvent $flushCacheEvent)
@@ -63,14 +48,6 @@ class Subscriber
         $dispatcher        = $this->getEventDispatcher();
         $dispatcher->dispatch($rebuildCacheEvent::NAME, $rebuildCacheEvent);
 
-    }
-
-    public function addListener($eventName, $listener, $priority = 200)
-    {
-        $dispatcher = $this->getEventDispatcher();
-        $dispatcher->addListener($eventName, $listener, $priority);
-
-        return $this;
     }
 
     protected function getCache()
