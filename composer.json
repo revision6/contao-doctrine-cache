@@ -26,11 +26,17 @@
     "php": ">=5.4",
     "contao/core": ">3.4.3,<4.0",
     "contao-community-alliance/composer-plugin": "~2.0",
-    "doctrine/cache": "~1.4"
+    "doctrine/cache": "~1.4",
+    "contao-community-alliance/event-dispatcher": "1.3.*@dev"
   },
   "require-dev": {
     "cyberspectrum/contao-toolbox": "~0.6",
     "phpcq/all-tasks": "~1.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "PostManager": "src/ContaoDoctrineCache/"
+    }
   },
   "extra": {
     "contao": {
