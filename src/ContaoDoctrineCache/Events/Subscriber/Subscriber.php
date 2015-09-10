@@ -80,6 +80,6 @@ class Subscriber
 
     protected function getEventDispatcher()
     {
-        $GLOBALS['container']['event-dispatcher']
+        $GLOBALS['container']['event-dispatcher'];
     }
 }
