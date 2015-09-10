@@ -17,6 +17,7 @@ namespace PostManager\DataContainer\Events\Table;
 
 use Contao\Input;
 use ContaoDoctrineCache\Events\Event\FlushCacheEvent;
+use ContaoDoctrineCache\Events\Event\RebuildCacheEvent;
 use PostManager\IPostManagerServiceContainer;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -49,22 +50,36 @@ class Subscriber
             );
     }
 
-    public function flushCache(FlushCacheEvent $event)
+    public function flushCache(FlushCacheEvent $flushCacheEvent)
     {
-        if (!$event->getCallerType() == 'default') {
+        if (!$flushCacheEvent->getCallerType() == 'default') {
             return;
         }
-echo"TEST";
-        $GLOBALS['container']['doctrine-cache']->flushAll();
-        $event->stopPropagation();
-    }
 
+        $this->getCache()->flushAll();
+        $flushCacheEvent->stopPropagation();
+
+        $rebuildCacheEvent = new RebuildCacheEvent($flushCacheEvent->getCallerParameter());
+        $dispatcher        = $this->getEventDispatcher();
+        $dispatcher->dispatch($rebuildCacheEvent::NAME, $rebuildCacheEvent);
+
+    }
 
     public function addListener($eventName, $listener, $priority = 200)
     {
-        $dispatcher = $GLOBALS['container']['event-dispatcher'];
+        $dispatcher = $this->getEventDispatcher();
         $dispatcher->addListener($eventName, $listener, $priority);
 
         return $this;
+    }
+
+    protected function getCache()
+    {
+        return $GLOBALS['container']['doctrine-cache'];
+    }
+
+    protected function getEventDispatcher()
+    {
+        $GLOBALS['container']['event-dispatcher']
     }
 }

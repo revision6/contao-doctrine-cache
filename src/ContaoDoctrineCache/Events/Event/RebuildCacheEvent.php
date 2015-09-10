@@ -11,7 +11,7 @@ class RebuildCacheEvent extends Event
 
     protected $callerParameter;
 
-    public function __construct($callerType, $callerParameter)
+    public function __construct($callerParameter)
     {
         $this->callerParameter = $callerParameter;
     }
