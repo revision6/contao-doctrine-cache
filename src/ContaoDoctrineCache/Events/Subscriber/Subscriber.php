@@ -13,7 +13,7 @@
  * @filesource
  */
 
-namespace PostManager\DataContainer\Events\Table;
+namespace ContaoDoctrineCache\Events\Subscriber;
 
 use Contao\Input;
 use ContaoDoctrineCache\Events\Event\FlushCacheEvent;

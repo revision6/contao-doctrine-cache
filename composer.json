@@ -35,7 +35,7 @@
   },
   "autoload": {
     "psr-0": {
-      "PostManager": "src/ContaoDoctrineCache/"
+      "ContaoDoctrineCache": "src/ContaoDoctrineCache/"
     }
   },
   "extra": {
