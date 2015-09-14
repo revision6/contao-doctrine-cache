@@ -8,7 +8,7 @@ $container['doctrine-cache'] = $container->share(
         if ($GLOBALS['TL_CONFIG']['doctrineCacheDisableParam']) {
             $disableParams = explode(',', $GLOBALS['TL_CONFIG']['doctrineCacheDisableParam']);
 
-            if (array_intersect($disableParams, array_keys($_GET))) {
+            if (in_array($disableParams, array(array_keys($_GET)))) {
                 $disableCache = true;
             }
         }
