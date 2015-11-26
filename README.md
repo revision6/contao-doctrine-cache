@@ -1,4 +1,2 @@
 # contao-doctrine-cache
-Doctrine Cache implementation for Contao-CMS
-
-Known Limitation: Works at the moment only with APC.
+https://confluence.swmh.de/display/VMIT/contao-doctrine-cache
